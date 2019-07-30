@@ -54,16 +54,19 @@ class TransferLibrary
 	}
 
     public function notify(){
-	    echo '<script type="text/javascript">notify();</script>';        
+        echo '<script type="text/javascript">                   
+        $("#enable_otp_response").show();
+        setTimeout(function(){ $("#enable_otp_response").hide(); }, 5000);
+        </script>';        
     }
 
-    public function InitiateTransfer($body){
-        // $_SESSION['data2'] = $body;
-        $this->initializer("transfer","POST",$body);
-        $response=null;
-        $response = curl_exec($this->ch);
-        
-        return $response;
+    public function Unbind($arr,$arrKeys){
+        if(is_array($arrKeys) && is_array($arr)){
+            foreach ($arrKeys as $key => $value) {
+                unset($arr[$value]);
+            }
+            return $arr;
+        }
         
     }
 

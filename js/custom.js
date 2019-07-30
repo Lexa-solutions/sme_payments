@@ -16,8 +16,8 @@ function docControl(){
 //Helper method to notify user of background process
 function notify(msg="Request in progress"){
     // $('#enable_otp_response p').html("Request in progress");   
-    $('#enable_otp_response p').html(msg);                            
-    $('#enable_otp_response').show();
-    setTimeout(function(){ $('#enable_otp_response').hide(); }, 5000);
+    $("#enable_otp_response p").html(msg);                            
+    $("#enable_otp_response").show();
+    setTimeout(function(){ $("#enable_otp_response").hide(); }, 5000);
 }
 

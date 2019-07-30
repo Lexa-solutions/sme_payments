@@ -4,18 +4,7 @@
     <title>
       
     <?php
-    //Get Case Comment Notification Start
-    // $cols = Array("c.comment","c.case_id","ad.f_name","ad.p_pics","ad.l_name","ad.cust_typeid","ad.company_name");
-    // $db->where("owner_type",'user');
-    // $db->where("is_read",0);
-    // $db->where("ca.admin_id",$_SESSION['admin_profile']['id']);
-    // $db->orderBy('c.createdon');
-    // $db->join("cases ca", "c.case_id=ca.case_id", "INNER");
-    // $db->join("consignees ad", "ca.cust_id=ad.cust_id", "INNER");
-    // $comments = $db->get("case_comments c",5,$cols);
- 
-    //  $comment_count = $db->count;
-     //Get Case Comment Notification End
+
      $comment_count = '';
      $comments = array();
 
@@ -53,9 +42,6 @@
     
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <meta content="template language" name="keywords">
-    <meta content="Tamerlan Soziev" name="author">
-    <meta content="Admin dashboard html template" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="favicon.png" rel="shortcut icon">
     <link href="apple-touch-icon.png" rel="apple-touch-icon">
@@ -105,13 +91,7 @@
    <script type="text/javascript" src="fusioncharts/fusioncharts.charts.js"></script>
    <script type="text/javascript" src="fusioncharts/fusioncharts.theme.fusion.js"></script>
    
-
-   
-   <!-- <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
-  <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script> -->
-
-   <!-- Fusion Charts End -->
-
+<!-- Scroll bar begin -->
     <style>
       ::-webkit-scrollbar {
         margin-right: 5px;
@@ -166,76 +146,23 @@
           </div>
           <div class="search-suggestions-group">
             <div class="ssg-header">
-              <div class="ssg-icon">
-                <div class="os-icon os-icon-box"></div>
-              </div>
-              <div class="ssg-name">
-                Projects
-              </div>
-              <div class="ssg-info">
-                24 Total
-              </div>
+              
             </div>
             <div class="ssg-content">
-              <div class="ssg-items ssg-items-boxed">
-                <a class="ssg-item" href="users_profile_big.html">
-                  <div class="item-media" style="background-image: url(img/company6.png)"></div>
-                  <div class="item-name">
-                    Integ<span>ration</span> with API
-                  </div>
-                </a><a class="ssg-item" href="users_profile_big.html">
-                  <div class="item-media" style="background-image: url(img/company7.png)"></div>
-                  <div class="item-name">
-                    Deve<span>lopm</span>ent Project
-                  </div>
-                </a>
-              </div>
+              
             </div>
           </div>
           <div class="search-suggestions-group">
             <div class="ssg-header">
-              <div class="ssg-icon">
-                <div class="os-icon os-icon-users"></div>
-              </div>
-              <div class="ssg-name">
-                Customers
-              </div>
-              <div class="ssg-info">
-                12 Total
-              </div>
+              
             </div>
             <div class="ssg-content">
-              <div class="ssg-items ssg-items-list">
-                <a class="ssg-item" href="users_profile_big.html">
-                  <div class="item-media" style="background-image: url(img/avatar1.jpg)"></div>
-                  <div class="item-name">
-                    John Ma<span>yer</span>s
-                  </div>
-                </a><a class="ssg-item" href="users_profile_big.html">
-                  <div class="item-media" style="background-image: url(img/avatar2.jpg)"></div>
-                  <div class="item-name">
-                    Th<span>omas</span> Mullier
-                  </div>
-                </a><a class="ssg-item" href="users_profile_big.html">
-                  <div class="item-media" style="background-image: url(img/avatar3.jpg)"></div>
-                  <div class="item-name">
-                    Kim C<span>olli</span>ns
-                  </div>
-                </a>
-              </div>
+             
             </div>
           </div>
           <div class="search-suggestions-group">
             <div class="ssg-header">
-              <div class="ssg-icon">
-                <div class="os-icon os-icon-folder"></div>
-              </div>
-              <div class="ssg-name">
-                Files
-              </div>
-              <div class="ssg-info">
-                17 Total
-              </div>
+              
             </div>
             <div class="ssg-content">
              
@@ -487,26 +414,7 @@
                     </div>
                     <span>Dashboard</span></a>
                 </li>
-                <!-- <li class="sub-header">
-                    <span>MY PROFILE</span>
-                </li>
-                <li <?php echo (CURRENT_PAGE =="customers.php" || CURRENT_PAGE=="profile.php") ? 'class="active"' : '' ; ?>>
-                    <a href="profile.php">
-                    <div class="icon-w">
-                        <i class="picons-thin-icon-thin-0701_user_profile_avatar_man_male"></i>
-                    </div>
-                    <span>Profile</span></a>
-                </li> -->
-                <!-- <li class="sub-header">
-                    <span>Admin Management</span>
-                </li>
-                <li <?php echo (CURRENT_PAGE =="customers.php" || CURRENT_PAGE=="users.php") ? 'class="active"' : '' ; ?>>
-                    <a href="users.php">
-                    <div class="icon-w">
-                        <i class="picons-thin-icon-thin-0073_documents_files_paper_text_archive_copy"></i>
-                    </div>
-                    <span>Admins</span></a>
-                </li> -->
+               
                 <li class="sub-header">
                     <span>Disbursement</span>
                     </li>
@@ -580,15 +488,11 @@
                                     <i class="os-icon os-icon-wallet-loaded"></i>
                                 </div>
                                 <ul>
-                                    <!-- <li>
-                                    <a href="apps_email.html"><i class="os-icon os-icon-mail-01"></i><span>Incoming Mail</span></a>
-                                    </li> -->
+                                  
                                     <li>
                                     <a href="profile.php"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
                                     </li>
-                                    <!-- <li>
-                                    <a href="renew-registration.php"><i class="os-icon os-icon-coins-4"></i><span> Subscriptions</span></a>
-                                    </li> -->
+                                   
                                     <li>
                                     <a href="#"><i class="os-icon os-icon-others-43"></i><span>Notifications</span></a>
                                     </li>

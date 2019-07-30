@@ -45,9 +45,6 @@ if(isset($_COOKIE['admin_username']) && isset($_COOKIE['admin_password']))
     <title>Login</title>
     <meta charset="utf-8">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
-    <meta content="template language" name="keywords">
-    <meta content="Tamerlan Soziev" name="author">
-    <meta content="Admin dashboard html template" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <link href="favicon.png" rel="shortcut icon">
     <link href="apple-touch-icon.png" rel="apple-touch-icon">
@@ -76,7 +73,7 @@ if(isset($_COOKIE['admin_username']) && isset($_COOKIE['admin_password']))
             </div>
             <form action="actions/authenticate.php" method="POST">
                 <div class="form-group">
-                    <label for="">Email</label><input class="form-control" placeholder="Email" type="text" name="username">
+                    <label for="">Email or Username</label><input class="form-control" placeholder="Email" type="text" name="username">
                 </div>
                 <div class="form-group">
                     <label for="">Password</label><input class="form-control" placeholder="Password" type="password" name="passwd">

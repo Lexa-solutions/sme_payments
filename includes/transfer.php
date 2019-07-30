@@ -23,12 +23,6 @@ if($recipients_arr['status']==1)
 
 //End Preload Data
 
-function notify(){
-    echo '<script type="text/javascript">notify();</script>';        
-}
-
-//notify();
-
 //Check Balance
 if(isset($_GET['chk_balance']) && $_GET['chk_balance']='ctrl_02930Z9II$0102!94@02'){
     $transfer_lib->chk_balance();
@@ -50,26 +44,21 @@ if(isset($_GET['enable_otp']) && $_GET['enable_otp']='ctrl_02930Z9II$0102!94@02'
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
-    //Notify user of ongoing background process
-    $transfer_lib->notify();
-
+    
     $data = filter_input_array(INPUT_POST);
     unset($data['users_DT_length']);
 
     if(isset($data['action'])){
         if(isset($data['recipient_code']))
-            $recipient_code = trim($data['recipient_code']);
+            $recipient_code = filter_var(trim($data['recipient_code']), FILTER_SANITIZE_STRING) ;
 
         //Update Transfer Recipient
-        if($data['action']=='update'){ 
-            unset($data['recipient_code']);
-            unset($data['action']);
-            unset($data['type']);unset($data['account_number']);unset($data['account_name']);unset($data['bank_code']);unset($data['currency']);unset($data['description']);
-
-            $_SESSION['body'] = $data;
-            $_SESSION['recipient_code'] = $recipient_code;
+        if($data['action']=='update'){
+            //Unset unnecessary input fields... We are leaving just the 'name' and 'email' fields
+            $arrKeys = array('recipient_code','action','type','account_number','account_name','bank_code','currency','description');
+            $data = $transfer_lib->Unbind($data, $arrKeys);
+            
             $updated_recipient = json_decode($paystack->UpdateTransferRecipient($recipient_code,$data),TRUE);
-
 
             if(isset($updated_recipient)){
                 $_SESSION['success'] = $updated_recipient['message']; 
@@ -99,14 +88,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         }
         //Initiate Single Transfer
         else if($data['action'] == 'initiate-transfer'){
-            unset($data['action']);
+
             $data['metadata'] = array('initiatedBy'=>$_SESSION['admin_profile']['fullname']);
             $data['amount']= $data['amount']*100;
+            $data['recipient'] = $data['recipient_code'];
 
-            $_SESSION['data']=$data;
+            //Unset unnecessary input fields... 
+            $arrKeys = array('recipient_code','action');
+            $data = $transfer_lib->Unbind($data, $arrKeys);
+
             $transfer_data = json_decode($paystack->InitiateTransfer($data),TRUE);
-
-            $_SESSION['transfer_data'] = $transfer_data;
 
             if(isset($transfer_data)){
                 if($transfer_data['status']){
@@ -114,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         header('location: initiate-transfer.php?transfer_code='.$transfer_data['data']['transfer_code']);
                         exit();
                     }
-                    else if($transfer_data['data']['status'] == 'pending'){
+                    else if($transfer_data['data']['status'] == 'success'){
                         $_SESSION['success'] = $transfer_data['message']; 
                         header('location: transfer-history.php');
                         exit();
@@ -135,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 exit();
             }
         }
+        //Finalize Transfer
         else if($data['action'] == 'otp'){
             unset($data['action']);
             $finalize = json_decode($paystack->FinalizeTransfer($data),TRUE);
@@ -146,10 +138,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             
             exit();
         }
+        //Resend OTP
         else if($data['action'] == 'resend_otp'){
             unset($data['action']);
 
-            //$_SESSION['data'] = $data;
             $resend_otp = json_decode($paystack->ResendOTP($data),TRUE);
 
             $_SESSION['resend_otp'] = $resend_otp;
@@ -165,11 +157,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             }
             
         }
+        //DISABLE OTP REQUIREMENT
         else if($data['action'] == 'disable_otp_finalize'){
             
             unset($data['action']);
 
-            //$_SESSION['data'] = $data;
             $disable_otp_finalize = json_decode($paystack->DisableOTPFinalize($data),TRUE);
 
             $_SESSION['resend_otp'] = $disable_otp_finalize;
@@ -185,13 +177,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             }
             
         }
-
+        //BULK TRANSFER
         else if($data['action'] == 'bulk_transfer'){
             
-            unset($data['action']);
-             
             if(isset($_FILES["transfer_csv"])){              
-                $doc = $_FILES["transfer_csv"];            
+                $doc = $_FILES["transfer_csv"];       
                 $file_tmp = $doc['tmp_name'];                  
                 
                 $transfers = [];
@@ -199,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                 // Open the file for reading
                 if (($h = fopen("{$file_tmp}", "r")) !== FALSE) 
                 {
-                    // Each line in the file is converted into an individual array that we call $data
+                    // Each line in the file is converted into an individual array that we call $line
                     // The items of the array are comma separated
                     fgetcsv($h); //skip header line
                     while (($line = fgetcsv($h, 1000, ",")) !== FALSE) 
@@ -221,11 +211,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                     }
                                        
                 }
-                unset($data['transfer_csv']);
+
+                //Unset unnecessary input fields... 
+                $arrKeys = array('transfer_csv','action');
+                $data = $transfer_lib->Unbind($data, $arrKeys);
+
                 $data['transfers'] = $transfers;
                 
                 $bulk_transfer = json_decode($paystack->BulkTransfer($data),TRUE);
-                $_SESSION['bulk_transer_response'] = $bulk_transfer;
                 if($bulk_transfer['status']){
                     $_SESSION['success'] = $bulk_transfer['message'];
                     header('location: transfer-history.php');

@@ -2,11 +2,11 @@
 
 class Paystack
 {
-	var $url;
-    var $headers;
-    var $ch;
-    var $error_message;
-    var $resp_data;
+	protected $url;
+    protected $headers;
+    protected $ch;
+    protected $error_message;
+    protected $resp_data;
 	
 	// public function __construct($path, $method) {
     // }
@@ -40,7 +40,7 @@ class Paystack
         
         if($data != null){
             $data_string = json_encode($data);
-            // $_SESSION['data_string'] = $data_string;
+            $_SESSION['data_string'] = $data_string;
             //curl_setopt($this->ch, CURLOPT_POST, true );
             curl_setopt($this->ch, CURLOPT_POSTFIELDS, $data_string);
             
@@ -122,18 +122,18 @@ class Paystack
     }
 
     public function DeletetransferRecipient($recipient_code){
-        
+
         $this->initializer("transferrecipient/".$recipient_code,"DELETE");
         $response=null;
         $response = curl_exec($this->ch);
 
         $_SESSION['response']=$response;
         return $response;
-        
     }
 
     public function InitiateTransfer($body){
-        // $_SESSION['data2'] = $body;
+
+        $_SESSION['data2'] = $body;
         $this->initializer("transfer","POST",$body);
         $response=null;
         $response = curl_exec($this->ch);
