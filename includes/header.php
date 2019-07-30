@@ -211,26 +211,7 @@
                     </div>
                     <span>Dashboard</span></a>
                 </li>
-                <!-- <li class="sub-header">
-                    <span>MY PROFILE</span>
-                </li>
-                <li <?php echo (CURRENT_PAGE =="customers.php" || CURRENT_PAGE=="profile.php") ? 'class="active"' : '' ; ?>>
-                    <a href="profile.php">
-                    <div class="icon-w">
-                        <i class="picons-thin-icon-thin-0701_user_profile_avatar_man_male"></i>
-                    </div>
-                    <span>Profile</span></a>
-                </li> -->
-                <!-- <li class="sub-header">
-                    <span>Admin Management</span>
-                </li>
-                <li <?php echo (CURRENT_PAGE =="customers.php" || CURRENT_PAGE=="users.php") ? 'class="active"' : '' ; ?>>
-                    <a href="users.php">
-                    <div class="icon-w">
-                        <i class="picons-thin-icon-thin-0073_documents_files_paper_text_archive_copy"></i>
-                    </div>
-                    <span>Admins</span></a>
-                </li> -->
+                
                 <li class="sub-header">
                     <span>Disbursement</span>
                     </li>
@@ -325,7 +306,7 @@
                     <a href="apps_email.html"><i class="os-icon os-icon-mail-01"></i><span>Incoming Mail</span></a>
                   </li> -->
                   <li>
-                    <a href="profile.php"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
+                    <a href="#"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
                   </li>
                   <!-- <li>
                     <a href="renew-registration.php"><i class="os-icon os-icon-coins-4"></i><span>Subscriptions</span></a>
@@ -387,7 +368,7 @@
                 </div>
                 <ul>
                   <li>
-                    <a href="profile.php"><i class="os-icon os-icon-ui-49"></i><span>Profile Settings</span></a>
+                    <a href="#"><i class="os-icon os-icon-ui-49"></i><span>Profile Settings</span></a>
                   </li>
                  
                 </ul>
@@ -490,7 +471,7 @@
                                 <ul>
                                   
                                     <li>
-                                    <a href="profile.php"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
+                                    <a href="#"><i class="os-icon os-icon-user-male-circle2"></i><span>Profile Details</span></a>
                                     </li>
                                    
                                     <li>
@@ -547,7 +528,7 @@
                               </div>
                               <ul>
                                 <li>
-                                  <a href="profile.php"><i class="os-icon os-icon-ui-49"></i><span>Profile Settings</span></a>
+                                  <a href="#"><i class="os-icon os-icon-ui-49"></i><span>Profile Settings</span></a>
                                 </li>
                               </ul>
                             </div>
