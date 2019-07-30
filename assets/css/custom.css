@@ -1,0 +1,88 @@
+.img_1{
+    width: 100%;
+    float: left;
+    clear: both;
+}
+.container-fluid{
+    width: 95% !important;
+}
+
+.fixed-bottom{
+    background: #233471;
+    color: #fff;
+    padding-top: 10px;
+}
+.login-form input{
+    background: #233471;
+    font-size: 20px;
+    line-height: 2.5em;
+    border-radius: 20px;
+    border: 0;
+}
+.login-form input::placeholder{
+    color: #7e87ab;
+}
+.login-form label{
+    font-size: 22px;
+    font-weight: 800;
+    color: #50519d;
+}
+.login-form button{
+    background: #233471;
+    border-radius: 20px;
+    width: 30%;
+    font-size: 20px;
+}
+.login-form .input-group i{
+    color: #fff;
+    background: #233471;
+    padding-right: 10px;
+    bottom: 0;
+    padding-top: 15px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.input-group{
+    width: 80% !important;    
+}
+.no-account{
+    color: #999999;
+    font-size: 20px;
+}
+.no-account a{
+    color: #233471;
+}
+.text-align{
+    margin: auto;
+  width: 50%;
+}
+.welcome{
+    font-size: 4em;
+    font-weight: 900;
+    color: #233471;
+}
+.get-started{
+    background: #233471;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px;
+    padding-right: 0px;
+}
+.get-started img{
+    margin-top: -3px;
+    margin-right: -1px;
+    background: #fff;
+    padding: 8px;
+    border-radius: 20px;
+    margin-left: 5px;
+}
+
+.login-form .input-group .form-control:focus + i {
+    background: #fff !important;
+    color: #233471;
+}
+
+.login-form .input-group .form-control:focus{
+    border: 0 !important;
+}
